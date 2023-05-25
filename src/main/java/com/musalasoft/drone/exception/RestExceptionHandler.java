@@ -26,5 +26,22 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
+    @ExceptionHandler(MedicationNotFoundException.class)
+    public ResponseEntity<Object> handleMedicationNotFoundException(MedicationNotFoundException ex) {
+        String errorMessage = "Medication not found: " + ex.getMessage();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+    @ExceptionHandler(MedicationAlreadyLoadedException.class)
+    public ResponseEntity<Object> handleMedicationAlreadyLoadedException(MedicationAlreadyLoadedException ex) {
+        String errorMessage = "Medication already loaded: " + ex.getMessage();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<Object> handleIllegalStateException(IllegalStateException ex) {
+        String errorMessage = "Drone is not in the LOADED state: " + ex.getMessage();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
 }
 

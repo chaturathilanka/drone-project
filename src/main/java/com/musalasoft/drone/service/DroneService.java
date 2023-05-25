@@ -8,9 +8,11 @@ import java.util.List;
 public interface DroneService {
     Drone registerDrone(Drone drone);
 
-    void loadMedications(Long droneId, List<Medication> medications);
+    void loadMedications(Long droneId, List<Long> medicationIds);
 
-    List<Medication> getLoadedMedications(Long droneId);
+    List<String> getLoadedMedications(Long droneId);
 
     List<Drone> getAvailableDrones();
+
+    int getDroneBatteryLevel(Long droneId);
 }
