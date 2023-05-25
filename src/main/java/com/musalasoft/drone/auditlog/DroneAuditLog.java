@@ -19,5 +19,14 @@ public class DroneAuditLog {
 
     private String details;
 
+    @Override
+    public String toString() {
+        return "DroneAuditLog{" +
+                "id=" + id +
+                ", droneId=" + droneId +
+                ", action='" + action + '\'' +
+                ", details='" + details + '\'' +
+                '}';
+    }
 }
 

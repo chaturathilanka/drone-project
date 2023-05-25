@@ -35,6 +35,7 @@ public class DroneServiceImpl implements DroneService {
 
     @Override
     public Drone registerDrone(Drone drone) {
+        logger.info("Registering drone: {}", drone);
         return droneRepository.save(drone);
     }
 
@@ -52,6 +53,7 @@ public class DroneServiceImpl implements DroneService {
                     .orElseThrow(() -> new MedicationNotFoundException("Medication not found with ID: " + medicationId));
 
             if (drone.getMedications().contains(medication)) {
+                logger.warn("Medication with ID {} is already loaded on the drone.", medicationId);
                 throw new MedicationAlreadyLoadedException("Medication with ID " + medicationId + " is already loaded on the drone.");
             }
             totalWeight += medication.getWeight();
@@ -64,6 +66,8 @@ public class DroneServiceImpl implements DroneService {
         medications.forEach(drone::addMedication);
         drone.setState(DroneState.LOADED);
         droneRepository.save(drone);
+        logger.info("Medications loaded successfully for drone with ID {}", droneId);
+
     }
 
     @Override
@@ -72,6 +76,7 @@ public class DroneServiceImpl implements DroneService {
                 .orElseThrow(() -> new DroneNotFoundException("Drone not found with ID: " + droneId));
 
         if (drone.getState() != DroneState.LOADED) {
+            logger.error("Drone with ID {} is not in the LOADED state.", droneId);
             throw new IllegalStateException();
         }
         List<String> medicationNames = drone.getMedications().stream().map(Medication::getName).collect(Collectors.toList());
@@ -80,6 +85,7 @@ public class DroneServiceImpl implements DroneService {
 
     @Override
     public List<Drone> getAvailableDrones() {
+        logger.info("Fetching available drones");
         return droneRepository.findByState(DroneState.IDLE);
     }
 

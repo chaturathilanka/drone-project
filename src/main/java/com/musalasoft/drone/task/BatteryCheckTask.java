@@ -24,7 +24,7 @@ public class BatteryCheckTask {
         this.droneAuditLogRepository = droneAuditLogRepository;
     }
 
-    @Scheduled(cron = "0 * * * * *") // Runs every minute
+    @Scheduled(cron = "0 */10 * * * *") // Runs every 10 minutes
     public void runBatteryCheck() {
         List<Drone> drones = droneRepository.findAll();
 

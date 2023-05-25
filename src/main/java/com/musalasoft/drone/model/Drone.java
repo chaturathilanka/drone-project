@@ -52,4 +52,16 @@ public class Drone {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Drone{" +
+                "id=" + id +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", model=" + model +
+                ", weightLimit=" + weightLimit +
+                ", batteryCapacity=" + batteryCapacity +
+                ", state=" + state +
+                ", medications=" + medications +
+                '}';
+    }
 }

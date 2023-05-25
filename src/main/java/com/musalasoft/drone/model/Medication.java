@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Arrays;
+
 @Entity
 @Getter
 @Setter
@@ -32,4 +34,15 @@ public class Medication {
     )
     private Drone drone;
 
+    @Override
+    public String toString() {
+        return "Medication{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", code='" + code + '\'' +
+                ", image=" + Arrays.toString(image) +
+                ", drone=" + drone +
+                '}';
+    }
 }
