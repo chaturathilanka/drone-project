@@ -5,6 +5,7 @@ import com.musalasoft.drone.model.Medication;
 import com.musalasoft.drone.service.DroneService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class DroneController {
     public ResponseEntity<Drone> registerDrone(@RequestBody Drone drone) {
         logger.info("Registering a new drone: {}", drone);
         Drone registeredDrone = droneService.registerDrone(drone);
-        return ResponseEntity.ok(registeredDrone);
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredDrone);
     }
 
     @PostMapping("/{droneId}/load")

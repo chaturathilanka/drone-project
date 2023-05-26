@@ -10,13 +10,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DroneNotFoundException.class)
     public ResponseEntity<Object> handleDroneNotFoundException(DroneNotFoundException ex) {
-        String errorMessage = "Drone not found: " + ex.getMessage();
+        String errorMessage = ex.getMessage();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 
     @ExceptionHandler(InvalidWeightException.class)
     public ResponseEntity<Object> handleInvalidWeightException(InvalidWeightException ex) {
-        String errorMessage = "Invalid weight for medication '" + ex.getMedicationNames() + "': " + ex.getMessage();
+        String errorMessage =  ex.getMedicationNames() + "': " + ex.getMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
