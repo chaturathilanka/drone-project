@@ -6,7 +6,7 @@ This is a drone application that allows you to register drones and perform vario
 
 Make sure you have the following prerequisites installed on your system:
 
-- Java Development Kit (JDK) 11 or higher
+- Java Development Kit (JDK) 17
 - Apache Maven
 - Postman (for API testing)
 
